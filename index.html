@@ -180,10 +180,11 @@
 		<!-- use the Okta widget to power authentication! -->
 		<script type="text/javascript">
 		  var oktaSignIn = new OktaSignIn({
-		    baseUrl: "{{ 'https://dev-729731.okta.com'}}",
-		    clientId: "{{ '0oawl0b18azKfOpTG356' }}",
+		    baseUrl: "https://dev-729731.okta.com",
+		    clientId: "0oawl0b18azKfOpTG356",
+		    redirectUri: "https://fabianp5060.github.io",
 		    authParams: {
-		      issuer: "{{ 'https://dev-729731.okta.com' }}/oauth2/default",
+		      issuer: "https://dev-729731.okta.com }}/oauth2/default",
 		      responseType: ['token', 'id_token'],
 		      display: 'page'
 		    }

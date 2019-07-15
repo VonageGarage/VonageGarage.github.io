@@ -90,7 +90,7 @@
 					<div id="okta-login-container"></div>
 				      <form action="implicit/hello">    
 				        <div class="Vlt-form__element Vlt-form__element--big">            
-				          <button id="demo_button" class="Vlt-btn Vlt-btn--primary Vlt-btn--app" type="Submit">Start Demo</button>
+				          <button id="messageBox" class="Vlt-btn Vlt-btn--primary Vlt-btn--app" type="Submit">Start Demo</button>
 				        </div>
 				      </form>
 					</div>					
@@ -222,7 +222,7 @@
 		      );
 		    });
 		  }
-	      var accessToken = oktaSignIn.tokenManager.get('access_token');
+	      var accessToken = oktaSignIn.tokenManager.get('accessToken');
           console.log("my access token "+accessToken)
 
 	      if (!accessToken) {

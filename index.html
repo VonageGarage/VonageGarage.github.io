@@ -224,16 +224,13 @@
 		      );
 		    });
 		  }
-		  function callMessagesApi() {
-		    var accessToken = signIn.tokenManager.get('access_token');
+	      var accessToken = signIn.tokenManager.get('access_token');
 
-		    if (!accessToken) {
-		      // This means that the user is not logged in
-		      window.onload = function(){
-		      	document.getElementById('button').style.visibility = 'hidden';		  	
-		      }		      
-		      return;
-		    }
+	      if (!accessToken) {
+	        // This means that the user is not logged in
+	        window.onload = function(){
+	      	  document.getElementById('button').style.visibility = 'hidden';		  	
+	        }		      
 	      }
 		</script>
 

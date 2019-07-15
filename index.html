@@ -91,7 +91,7 @@
 					    <div align="center">
 					      <form action="implicit/hello">    
 					        <div class="Vlt-form__element Vlt-form__element--big">            
-					          <button class="Vlt-btn Vlt-btn--primary" type="Submit">Login</button>
+					          <button id="button" class="Vlt-btn Vlt-btn--primary" type="Submit">Login</button>
 					        </div>
 					      </form>
 					    </div> 						
@@ -129,7 +129,7 @@
 						</div>	
 					</div>													
 					<div class="Vlt-card__footer">
-						<button class="Vlt-btn Vlt-btn--primary Vlt-btn--app">Start Demo</button>
+						<button id="button" class="Vlt-btn Vlt-btn--primary Vlt-btn--app">Start Demo</button>
 					</div>	
 				</div>
 
@@ -162,7 +162,7 @@
 						</div>	
 					</div>													
 					<div class="Vlt-card__footer">
-						<button class="Vlt-btn Vlt-btn--primary Vlt-btn--app">Start Demo</button>
+						<button id="button" class="Vlt-btn Vlt-btn--primary Vlt-btn--app">Start Demo</button>
 					</div>	
 				</div>											
 			</div>
@@ -170,6 +170,7 @@
 			</div>				
 		</div>
 
+		<a id="myLink" href = test.html></a>
 
 		<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/assets-petesweb.io/assets/1.2/js/svgxuse.min.js"></script>
 		<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/assets-petesweb.io/assets/1.2/dist/js/volta.min.js"/> 
@@ -223,6 +224,30 @@
 		      );
 		    });
 		  }
-		</script>		 	
+		  function callMessagesApi() {
+		    var accessToken = signIn.tokenManager.get('access_token');
+
+		    if (!accessToken) {
+		      // This means that the user is not logged in
+		      window.onload = function(){
+		      	document.getElementById('button').style.visibility = 'hidden';		  	
+		      }		      
+		      return;
+		    }
+	      }
+		</script>
+
+		<script>
+		  var simpleText = "hello_world";
+		  var finalSplitText = simpleText.split("_");
+		  var splitText = finalSplitText[0];
+
+		  window.onload = function() {
+		       //when the document is finished loading, replace everything
+		       //between the <a ...> </a> tags with the value of splitText
+		    document.getElementById("myLink").innerHTML=splitText;
+		  } 
+		</script>
+
   	</body>
 </html>

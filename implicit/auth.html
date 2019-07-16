@@ -65,24 +65,24 @@
 
 	  	  var auth_button = document.getElementById("auth_button");	
 		  if (!accessToken) {
-		  	console.log("Didi not find accesstoke")
+		  	console.log("Didi not find accesstoke");
 		    // This means that the user is not logged in
 		    window.onload = function(){
 		  	  document.getElementById('demo_button').style.visibility = 'hidden';
 
-		  	  auth_button.innerHTML("Sign-In")
+		  	  auth_button.innerHTML("Sign-In");
 		    } 
 		  } else {
-		    document.getElementById('email_addr').innerHTML(iToken.claims.email)	 
-		    auth_button.innerHTML("Sign-Out") 
+		    document.getElementById('email_addr').innerHTML = iToken.claims.email;
+		    auth_button.innerHTML("Sign-Out"); 
 	        auth_button.onclick = function (){
 	          oktaSignIn.session.close(function (err) {
 	            if (err) {
-	    	      console.log("Error logging out: " + err)
+	    	      console.log("Error logging out: " + err);
 	              // The user has not been logged out, perform some error handling here.
 	              return;
 	            } else {
-	      	      console.log("User has been logged out")
+	      	      console.log("User has been logged out");
 	            }
 	            // The user is now logged out. Render the Sign-In Widget.
 	          });

@@ -227,21 +227,23 @@
 		      );
 		    });
 		  }
+
+		window.onload = function(){
 	      var accessToken = oktaSignIn.tokenManager.get('accessToken');
 		  var iToken = oktaSignIn.tokenManager.get('idToken');
 
 		  console.log("my access token "+accessToken+" idToken Email: " + iToken.claims.email);
 
 	  	  var auth_button = document.getElementById("auth_button");	
+
 		  if (!accessToken) {
 		  	console.log("Didi not find accesstoke");
 		    // This means that the user is not logged in
-		    window.onload = function(){
+
 		  	  document.getElementById('demo_button').style.visibility = 'hidden';
 		  	  document.getElementById('auth_form').action = "implicit/auth";
 		  	  auth_button.innerHTML = "Sign-In";
-
-		    } 
+ 
 		  } else {
 		  	// User Is LOGGED IN, set actions to logout on click
 		    document.getElementById('email_addr').innerHTML = iToken.claims.email;
@@ -267,7 +269,8 @@
 	          });
 	          return false
             }		  	  
-		  }		      
+		  }	
+	    }	      
 		</script>
 
 		<script>

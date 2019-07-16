@@ -252,7 +252,9 @@
 	              return;
 	            } else {
 	              // If logout successful, clear tokens	
-	           	  oktaSignIn.tokenManager.clear(); 	
+	           	  oktaSignIn.tokenManager.clear(); 
+	           	  accessToken = undefined;
+	           	  iToken = undefined;
 	      	      console.log("User has been logged out");
 	      	      auth_button.innerHTML = "Sign-In";
 	            }

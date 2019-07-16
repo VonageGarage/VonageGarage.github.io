@@ -70,11 +70,11 @@
 		    window.onload = function(){
 		  	  document.getElementById('demo_button').style.visibility = 'hidden';
 
-		  	  auth_button.innerHTML("Sign-In");
+		  	  auth_button.innerHTML = "Sign-In";
 		    } 
 		  } else {
 		    document.getElementById('email_addr').innerHTML = iToken.claims.email;
-		    auth_button.innerHTML("Sign-Out"); 
+		    auth_button.innerHTML = "Sign-Out"; 
 	        auth_button.onclick = function (){
 	          oktaSignIn.session.close(function (err) {
 	            if (err) {

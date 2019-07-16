@@ -225,6 +225,7 @@
 		          console.error(err);
 		        }
 		      );
+		      document.getElementById("status").innerHTML = "I am not logged in";
 		    });
 		  }
 
@@ -248,7 +249,7 @@
  		  	}
 		  } else {
 		  	// User Is LOGGED IN, set actions to logout on click
-		    document.getElementById('email_addr').innerHTML = oktaSignIn.tokenManager.get('idToken').claims.email.claims.email;
+		    document.getElementById('email_addr').innerHTML = oktaSignIn.tokenManager.get('idToken').claims.email;
    	        document.getElementById('auth_form').action = "/";
 
 		    auth_button.innerHTML = "Sign-Out";

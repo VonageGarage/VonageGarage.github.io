@@ -248,7 +248,8 @@
 		          console.log("No Tokens | Found ACTIVE session | Just clicked auth_button - Logging out and trying to set auth_button to Sign-in");
 
 		          oktaSignIn.session.close(function (err) {
-		           	oktaSignIn.tokenManager.clear(); 	          	
+		           	oktaSignIn.tokenManager.clear(); 
+		           	console.log("After clearing tokens My accessToken: " + oktaSignIn.tokenManager.get('accessToken'))
 		            if (err) {
 		    	      console.log("Error logging out: " + err);
 		              // The user has not been logged out, perform some error handling here.

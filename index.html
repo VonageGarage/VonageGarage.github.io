@@ -36,7 +36,7 @@
 				  		</div>
 				  	</div>
 				  	<div class="Vlt-col Vlt-col--4of4 Vlt-right">
-				  	  <p id="email_addr"></p>
+				  	  <p id="email_addr"> </p>
 				      <form action="implicit/auth">    
 				        <div class="Vlt-form__element Vlt-form__element--big">            
 				          <button id="auth_button" class="Vlt-btn Vlt-btn--primary" type="Submit">Login</button>
@@ -230,28 +230,28 @@
 	      var accessToken = oktaSignIn.tokenManager.get('accessToken');
 		  var iToken = oktaSignIn.tokenManager.get('idToken');
 
-		  console.log("my access token "+accessToken+" idToken Email: " + iToken.claims.email)
+		  console.log("my access token "+accessToken+" idToken Email: " + iToken.claims.email);
 
 	  	  var auth_button = document.getElementById("auth_button");	
 		  if (!accessToken) {
-		  	console.log("Didi not find accesstoke")
+		  	console.log("Didi not find accesstoke");
 		    // This means that the user is not logged in
 		    window.onload = function(){
 		  	  document.getElementById('demo_button').style.visibility = 'hidden';
 
-		  	  auth_button.innerHTML("Sign-In")
+		  	  auth_button.innerHTML("Sign-In");
 		    } 
 		  } else {
-		    document.getElementById('email_addr').innerHTML(iToken.claims.email)	 
-		    auth_button.innerHTML("Sign-Out") 
+		    document.getElementById('email_addr').innerHTML = iToken.claims.email;
+		    auth_button.innerHTML("Sign-Out");
 	        auth_button.onclick = function (){
 	          oktaSignIn.session.close(function (err) {
 	            if (err) {
-	    	      console.log("Error logging out: " + err)
+	    	      console.log("Error logging out: " + err);
 	              // The user has not been logged out, perform some error handling here.
 	              return;
 	            } else {
-	      	      console.log("User has been logged out")
+	      	      console.log("User has been logged out");
 	            }
 	            // The user is now logged out. Render the Sign-In Widget.
 	          });

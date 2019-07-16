@@ -37,7 +37,7 @@
 				  	</div>
 				  	<div class="Vlt-col Vlt-col--4of4 Vlt-right">
 				  	  <p id="email_addr"> </p>
-				      <form action="implicit/auth">    
+				      <form id="auth_form" action="implicit/auth">    
 				        <div class="Vlt-form__element Vlt-form__element--big">            
 				          <button id="auth_button" class="Vlt-btn Vlt-btn--primary" type="Submit">Sign-In</button>
 				        </div>
@@ -238,11 +238,14 @@
 		    // This means that the user is not logged in
 		    window.onload = function(){
 		  	  document.getElementById('demo_button').style.visibility = 'hidden';
-
+		  	  document.getElementById('auth_form').action = "implicit/auth";
 		  	  auth_button.innerHTML = "Sign-In";
+
 		    } 
 		  } else {
 		    document.getElementById('email_addr').innerHTML = iToken.claims.email;
+   	        document.getElementById('auth_form').action = "/";
+
 		    auth_button.innerHTML = "Sign-Out";
 	        auth_button.onclick = function (){
 	          oktaSignIn.session.close(function (err) {
@@ -257,10 +260,10 @@
 	              // If logout successful, clear tokens	
 	      	      console.log("User has been logged out");
 	      	      auth_button.innerHTML = "Sign-In";
+
 	            }
 	            // The user is now logged out. Render the Sign-In Widget.
 	          });
-	          return false
             }		  	  
 		  }		      
 		</script>

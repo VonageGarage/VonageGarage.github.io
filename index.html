@@ -247,9 +247,7 @@
 		        auth_button.onclick = function (){
 		          console.log("No Tokens | Found ACTIVE session | Just clicked auth_button - Logging out and trying to set auth_button to Sign-in");
 
-		          oktaSignIn.session.close(function (err) {
-		           	oktaSignIn.tokenManager.clear(); 
-		           	console.log("After clearing tokens My accessToken: " + oktaSignIn.tokenManager.get('accessToken'))
+		          oktaSignIn.session.close(function (err) {		           	
 		            if (err) {
 		    	      console.log("Error logging out: " + err);
 		              // The user has not been logged out, perform some error handling here.
@@ -262,6 +260,9 @@
 		            }
 		            // The user is now logged out. Render the Sign-In Widget.
 		          });
+		          oktaSignIn.tokenManager.clear(); 
+		          console.log("After clearing tokens My accessToken: " + oktaSignIn.tokenManager.get('accessToken'));
+		          
 	            }    	        	
 		        return;
 		      } else {

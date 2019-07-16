@@ -228,14 +228,16 @@
 		    });
 		  }
 
+	      // var accessToken = oktaSignIn.tokenManager.get('accessToken');
+		  // var iToken = oktaSignIn.tokenManager.get('idToken');
+		  console.log("my access token "+
+		  	oktaSignIn.tokenManager.get('accessToken') + " idToken Email: " + 
+		  	oktaSignIn.tokenManager.get('idToken').claims.email
+		  );
 
-	      var accessToken = oktaSignIn.tokenManager.get('accessToken');
-		  var iToken = oktaSignIn.tokenManager.get('idToken');
-
-		  console.log("my access token "+accessToken+" idToken Email: " + iToken.claims.email);
 	  	  var auth_button = document.getElementById("auth_button");	
 
-		  if (!accessToken) {
+		  if (!oktaSignIn.tokenManager.get('accessToken')) {
 		  	console.log("Didi not find accesstoke");
 		    // This means that the user is not logged in
      		window.onload = function(){
@@ -246,15 +248,13 @@
  		  	}
 		  } else {
 		  	// User Is LOGGED IN, set actions to logout on click
-		    document.getElementById('email_addr').innerHTML = iToken.claims.email;
+		    document.getElementById('email_addr').innerHTML = oktaSignIn.tokenManager.get('idToken').claims.email.claims.email;
    	        document.getElementById('auth_form').action = "/";
 
 		    auth_button.innerHTML = "Sign-Out";
 	        auth_button.onclick = function (){
 	          oktaSignIn.session.close(function (err) {
-	           	  oktaSignIn.tokenManager.clear(); 
-	           	  accessToken = undefined;
-	           	  iToken = undefined;	          	
+	           	  oktaSignIn.tokenManager.clear(); 	          	
 	            if (err) {
 	    	      console.log("Error logging out: " + err);
 	              // The user has not been logged out, perform some error handling here.
@@ -267,7 +267,6 @@
 	            }
 	            // The user is now logged out. Render the Sign-In Widget.
 	          });
-	          return false
             }            		  	  
 		  }	      
 		</script>

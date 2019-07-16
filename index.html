@@ -243,6 +243,7 @@
 
 		    } 
 		  } else {
+		  	// User Is LOGGED IN, set actions to logout on click
 		    document.getElementById('email_addr').innerHTML = iToken.claims.email;
    	        document.getElementById('auth_form').action = "/";
 
@@ -264,6 +265,7 @@
 	            }
 	            // The user is now logged out. Render the Sign-In Widget.
 	          });
+	          return false
             }		  	  
 		  }		      
 		</script>

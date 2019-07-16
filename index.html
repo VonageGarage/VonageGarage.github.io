@@ -246,15 +246,15 @@
 		    auth_button.innerHTML = "Sign-Out";
 	        auth_button.onclick = function (){
 	          oktaSignIn.session.close(function (err) {
+	           	  oktaSignIn.tokenManager.clear(); 
+	           	  accessToken = undefined;
+	           	  iToken = undefined;	          	
 	            if (err) {
 	    	      console.log("Error logging out: " + err);
 	              // The user has not been logged out, perform some error handling here.
 	              return;
 	            } else {
 	              // If logout successful, clear tokens	
-	           	  oktaSignIn.tokenManager.clear(); 
-	           	  accessToken = undefined;
-	           	  iToken = undefined;
 	      	      console.log("User has been logged out");
 	      	      auth_button.innerHTML = "Sign-In";
 	            }

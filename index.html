@@ -208,18 +208,20 @@
 		        document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
 				document.getElementById('email_addr').innerHTML = idToken.claims.email;
    	        	document.getElementById('auth_form').action = "/";
-   	        	console.log("Setting auth_button to Sign-out");
+   	        	console.log("I found tokens in URL | Setting auth_button to Sign-out");
 			    document.getElementById("auth_button").innerHTML = "Sign-Out";
 
 		        auth_button.onclick = function (){
+		          console.log("Just clicked auth_button - Logging out and trying to set auth_button to Sign-in");
 		          oktaSignIn.session.close(function (err) {
-		           	  oktaSignIn.tokenManager.clear(); 	          	
+		           	oktaSignIn.tokenManager.clear();
+		           	console.log("Just cleared tokenManager, still trying to set auth_button to Sign-in"); 	          	
 		            if (err) {
 		    	      console.log("Error logging out: " + err);
 		              // The user has not been logged out, perform some error handling here.
 		              return;
 		            } else {
-		      	      console.log("User has been logged out and changing auth_button to Sign-In");
+		      	      console.log("Confirmed User has been logged out and changing auth_button to Sign-In");
 		      	      document.getElementById("auth_button").innerHTML = "Sign-In";
 
 		            }
@@ -237,20 +239,23 @@
 		      // If we get here, the user is already signed in.
 		      if (res.status === 'ACTIVE') {
 		        document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are *still* logged in! :)";
-				document.getElementById('email_addr').innerHTML = oktaSignIn.tokenManager.get('idToken').claims.email.claims.email;
+				document.getElementById('email_addr').innerHTML = oktaSignIn.tokenManager.get('idToken').claims.email;
    	        	document.getElementById('auth_form').action = "/";		        
+		      	console.log("No Tokens | Found ACTIVE session | Setting auth_button to Sign-out");   	        	
 			    document.getElementById("auth_button").innerHTML = "Sign-Out";
 
 		        auth_button.onclick = function (){
+		          console.log("No Tokens | Found ACTIVE session | Just clicked auth_button - Logging out and trying to set auth_button to Sign-in");
+
 		          oktaSignIn.session.close(function (err) {
-		           	  oktaSignIn.tokenManager.clear(); 	          	
+		           	oktaSignIn.tokenManager.clear(); 	          	
 		            if (err) {
 		    	      console.log("Error logging out: " + err);
 		              // The user has not been logged out, perform some error handling here.
 		              return;
 		            } else {
 		              // If logout successful, clear tokens	
-		      	      console.log("User has been logged out");
+		      	      console.log("No Tokens | Found ACTIVE session | User has been logged out setting auth_button to Sign-in");
 		      	      auth_button.innerHTML = "Sign-In";
 
 		            }

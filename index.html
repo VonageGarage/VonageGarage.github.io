@@ -228,12 +228,12 @@
 		    });
 		  }
 
-		window.onload = function(){
+
 	      var accessToken = oktaSignIn.tokenManager.get('accessToken');
 		  var iToken = oktaSignIn.tokenManager.get('idToken');
 
 		  console.log("my access token "+accessToken+" idToken Email: " + iToken.claims.email);
-
+		window.onload = function(){
 	  	  var auth_button = document.getElementById("auth_button");	
 
 		  if (!accessToken) {

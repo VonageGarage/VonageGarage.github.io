@@ -11,9 +11,9 @@
 
   	</head>
 	<body>
-		<h3 id="messageBox">You are not logged in</h3>		
+		<center><h3 id="messageBox">You are not logged in</h3></center>
 		<div id="okta-login-container"></div>	
-		
+
 		<!-- use the Okta widget to power authentication! -->
 		<script type="text/javascript">
 		  var oktaSignIn = new OktaSignIn({
@@ -60,49 +60,7 @@
 		      );
 		    });
 		  }
-		  // var accessToken = oktaSignIn.tokenManager.get('accessToken');
-		  // var iToken = oktaSignIn.tokenManager.get('idToken');
 
-		  // console.log("my access token "+accessToken+" idToken Email: " + iToken.claims.email)
-
-	  	//   var auth_button = document.getElementById("auth_button");	
-		  // if (!accessToken) {
-		  // 	console.log("Didi not find accesstoke");
-		  //   // This means that the user is not logged in
-		  //   window.onload = function(){
-		  // 	  document.getElementById('demo_button').style.visibility = 'hidden';
-
-		  // 	  auth_button.innerHTML = "Sign-In";
-		  //   } 
-		  // } else {
-		  //   document.getElementById('email_addr').innerHTML = iToken.claims.email;
-		  //   auth_button.innerHTML = "Sign-Out"; 
-	   //      auth_button.onclick = function (){
-	   //        oktaSignIn.session.close(function (err) {
-	   //          if (err) {
-	   //  	      console.log("Error logging out: " + err);
-	   //            // The user has not been logged out, perform some error handling here.
-	   //            return;
-	   //          } else {
-	   //    	      console.log("User has been logged out");
-	   //          }
-	   //          // The user is now logged out. Render the Sign-In Widget.
-	   //        });
-    //         }		  	  
-		  // }		      
-		</script>
-
-		<script>
-		  var simpleText = "hello_world";
-		  var finalSplitText = simpleText.split("_");
-		  var splitText = finalSplitText[0];
-
-		  window.onload = function() {
-		       //when the document is finished loading, replace everything
-		       //between the <a ...> </a> tags with the value of splitText
-		    document.getElementById("myLink").innerHTML=splitText; 
-	      }
-		  
 		</script>
 	</body>
 </html>

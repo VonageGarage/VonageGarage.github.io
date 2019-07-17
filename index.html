@@ -172,9 +172,6 @@
 			<div class="Vlt-col">				
 			</div>				
 		</div>
-
-		<a id="myLink" href = test.html></a>
-
 		<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/assets-petesweb.io/assets/1.2/js/svgxuse.min.js"></script>
 		<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/assets-petesweb.io/assets/1.2/dist/js/volta.min.js"/> 
 		<script type="text/javascript">
@@ -183,6 +180,16 @@
 
 		<!-- use the Okta widget to power authentication! -->
 		<script type="text/javascript">
+
+		  function login_setup(email){
+			document.getElementById('email_addr').innerHTML = email;
+        	document.getElementById('auth_form').action = "/";
+        	console.log("I found tokens in URL | Setting auth_button to Sign-out");
+		    document.getElementById("auth_button").innerHTML = "Sign-Out";
+
+		  }
+		  
+
 		  var oktaSignIn = new OktaSignIn({
 		    baseUrl: "https://dev-729731.okta.com",
 		    clientId: "0oawl0b18azKfOpTG356",
@@ -205,12 +212,13 @@
 		        oktaSignIn.tokenManager.add('idToken', idToken);
 
 		        window.location.hash='';
-		        document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
-				document.getElementById('email_addr').innerHTML = idToken.claims.email;
-   	        	document.getElementById('auth_form').action = "/";
-   	        	console.log("I found tokens in URL | Setting auth_button to Sign-out");
-			    document.getElementById("auth_button").innerHTML = "Sign-Out";
+		        // document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
+				// document.getElementById('email_addr').innerHTML = idToken.claims.email;
+   	//         	document.getElementById('auth_form').action = "/";
+   	//         	console.log("I found tokens in URL | Setting auth_button to Sign-out");
+			 //    document.getElementById("auth_button").innerHTML = "Sign-Out";
 
+			 	login_setup(idToken.claims.email)
 		        auth_button.onclick = function (){
 		          console.log("Just clicked auth_button - Logging out and trying to set auth_button to Sign-in");
 		          oktaSignIn.session.close(function (err) {
@@ -238,12 +246,13 @@
 		    oktaSignIn.session.get(function (res) {
 		      // If we get here, the user is already signed in.
 		      if (res.status === 'ACTIVE') {
-		        document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are *still* logged in! :)";
-				document.getElementById('email_addr').innerHTML = oktaSignIn.tokenManager.get('idToken').claims.email;
-   	        	document.getElementById('auth_form').action = "/";		        
-		      	console.log("No Tokens | Found ACTIVE session | Setting auth_button to Sign-out");   	        	
-			    document.getElementById("auth_button").innerHTML = "Sign-Out";
+		        // document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are *still* logged in! :)";
+				// document.getElementById('email_addr').innerHTML = oktaSignIn.tokenManager.get('idToken').claims.email;
+   	//         	document.getElementById('auth_form').action = "/";		        
+		  //     	console.log("No Tokens | Found ACTIVE session | Setting auth_button to Sign-out");   	        	
+			 //    document.getElementById("auth_button").innerHTML = "Sign-Out";
 
+			    login_setup(oktaSignIn.tokenManager.get('idToken').claims.email)
 		        auth_button.onclick = function (){
 		          console.log("No Tokens | Found ACTIVE session | Just clicked auth_button - Logging out and trying to set auth_button to Sign-in");
 
@@ -283,63 +292,7 @@
 		      //   }
 		      // );		      
 		    });
-		  }
-
-	      // var accessToken = oktaSignIn.tokenManager.get('accessToken');
-		  // var iToken = oktaSignIn.tokenManager.get('idToken');
-		  // console.log("my access token "+
-		  // 	oktaSignIn.tokenManager.get('accessToken') + " idToken Email: " + 
-		  // 	oktaSignIn.tokenManager.get('idToken').claims.email
-		  // );
-
-	  	  // var auth_button = document.getElementById("auth_button");	
-
-		  // if (!oktaSignIn.tokenManager.get('accessToken')) {
-		  	// console.log("Didi not find accesstoke");
-		   //  // This means that the user is not logged in
-     // 		window.onload = function(){
-
-		  	//   document.getElementById('demo_button').style.visibility = 'hidden';
-		  	//   document.getElementById('auth_form').action = "implicit/auth";
-		  	//   auth_button.innerHTML = "Sign-In";
- 		  // 	}
-		  // } else {
-		  	// User Is LOGGED IN, set actions to logout on click
-		    // document.getElementById('email_addr').innerHTML = oktaSignIn.tokenManager.get('idToken').claims.email.claims.email;
-   	  //       document.getElementById('auth_form').action = "/";
-
-		    // auth_button.innerHTML = "Sign-Out";
-	     //    auth_button.onclick = function (){
-	     //      oktaSignIn.session.close(function (err) {
-	     //       	  oktaSignIn.tokenManager.clear(); 	          	
-	     //        if (err) {
-	    	//       console.log("Error logging out: " + err);
-	     //          // The user has not been logged out, perform some error handling here.
-	     //          return;
-	     //        } else {
-	     //          // If logout successful, clear tokens	
-	     //  	      console.log("User has been logged out");
-	     //  	      auth_button.innerHTML = "Sign-In";
-
-	     //        }
-	     //        // The user is now logged out. Render the Sign-In Widget.
-	     //      });
-      //       }            		  	  
-		  // }	      
+		  }     
 		</script>
-
-		<script>
-		  var simpleText = "hello_world";
-		  var finalSplitText = simpleText.split("_");
-		  var splitText = finalSplitText[0];
-
-		  window.onload = function() {
-		       //when the document is finished loading, replace everything
-		       //between the <a ...> </a> tags with the value of splitText
-		    document.getElementById("myLink").innerHTML=splitText; 
-	      }
-		  
-		</script>
-
   	</body>
 </html>

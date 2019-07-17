@@ -236,22 +236,6 @@
 
 		        auth_button.onclick = function (){
 	        	  logout_setup(oktaSignIn);
-		          // console.log("Just clicked auth_button - Logging out and trying to set auth_button to Sign-in");
-		          // oktaSignIn.session.close(function (err) {
-		          //  	console.log("Just cleared tokenManager, still trying to set auth_button to Sign-in"); 	          	
-		          //   if (err) {
-		    	     //  console.log("Error logging out: " + err);
-		          //     // The user has not been logged out, perform some error handling here.
-		          //     return;
-		          //   } else {
-		      	   //    console.log("Confirmed User has been logged out and changing auth_button to Sign-In");
-		      	   //    document.getElementById("auth_button").innerHTML = "Sign-In";
-
-		          //   }
-		          //   // The user is now logged out. Render the Sign-In Widget.
-		          // });
-		          // oktaSignIn.tokenManager.clear();
-		          // console.log("After clearing tokens My accessToken: " + oktaSignIn.tokenManager.get('accessToken'));
 	            } 
 
 		      },
@@ -266,24 +250,7 @@
 
 			    login_setup(oktaSignIn.tokenManager.get('idToken').claims.email)
 		        auth_button.onclick = function (){
-	        	  logout_setup(oktaSignIn);
-		          // console.log("No Tokens | Found ACTIVE session | Just clicked auth_button - Logging out and trying to set auth_button to Sign-in");
-
-		          // oktaSignIn.session.close(function (err) {		           	
-		          //   if (err) {
-		    	     //  console.log("Error logging out: " + err);
-		          //     // The user has not been logged out, perform some error handling here.
-		          //     return;
-		          //   } else {
-		          //     // If logout successful, clear tokens	
-		      	   //    console.log("No Tokens | Found ACTIVE session | User has been logged out setting auth_button to Sign-in");
-		      	   //    auth_button.innerHTML = "Sign-In";
-
-		          //   }
-		          //   // The user is now logged out. Render the Sign-In Widget.
-		          // });
-		          // oktaSignIn.tokenManager.clear(); 
-		          // console.log("After clearing tokens My accessToken: " + oktaSignIn.tokenManager.get('accessToken'));	          
+	        	  logout_setup(oktaSignIn);	          
 	            }    	        	
 		        return;
 		      } else {

@@ -95,7 +95,7 @@
 						</div>	
 					</div>													
 					<div class="Vlt-card__footer">
-				      <form action="https://efddab91.ngrok.io/" method="get"> 
+				      <form action="https://318b36a8.ngrok.io/" method="get"> 
 				      	<input id="app_link_email" type="hidden" name="email_addr" value="">   
 				        <div class="Vlt-form__element Vlt-form__element--big">            
 				          <button id="app_link" class="Vlt-btn Vlt-btn--primary Vlt-btn--app" type="Submit">Start Demo</button>
@@ -269,31 +269,31 @@
 		    });
 		  }
 		  // Add okta toke to Auth Header and redirect to demo
-		  document.getElementById("app_link").onclick = function(){
-		    var accessToken = oktaSignIn.tokenManager.get('accessToken');
-		    console.log("At least i Made it to here: app_link.onclick")
+		  // document.getElementById("app_link").onclick = function(){
+		  //   var accessToken = oktaSignIn.tokenManager.get('accessToken');
+		  //   console.log("At least i Made it to here: app_link.onclick")
 
-		    if (!accessToken) {
-		      // This means that the user is not logged in
-		      return;
-		    }
+		  //   if (!accessToken) {
+		  //     // This means that the user is not logged in
+		  //     return;
+		  //   }
 
-		    // Make a request using jQuery
-		    $.ajax({
-		      // Your API or resource server:
-		      url: 'https://demo2-lb.petesweb.io/answer_home',
-		      headers: {
-		        Authorization: 'Bearer ' + accessToken.accessToken
-		      },
-		      success: function(response) {
-		        // Received messages!
-		        console.log('Messages', response);
-		      },
-		      error: function(response) {
-		        console.error(response);
-		      }
-		    });
-		  }
+		  //   // Make a request using jQuery
+		  //   $.ajax({
+		  //     // Your API or resource server:
+		  //     url: 'https://demo2-lb.petesweb.io/answer_home',
+		  //     headers: {
+		  //       Authorization: 'Bearer ' + accessToken.accessToken
+		  //     },
+		  //     success: function(response) {
+		  //       // Received messages!
+		  //       console.log('Messages', response);
+		  //     },
+		  //     error: function(response) {
+		  //       console.error(response);
+		  //     }
+		  //   });
+		  // }
 
 		</script>
   	</body>

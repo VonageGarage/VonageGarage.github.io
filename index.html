@@ -269,6 +269,7 @@
 		  // Add okta toke to Auth Header and redirect to demo
 		  document.getElementById("app_link").onclick = function(){
 		    var accessToken = oktaSignIn.tokenManager.get('accessToken');
+		    console.log("At least i Made it to here: document.getElementById("app_link").onclick")
 
 		    if (!accessToken) {
 		      // This means that the user is not logged in

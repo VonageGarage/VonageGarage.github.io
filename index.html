@@ -95,7 +95,8 @@
 						</div>	
 					</div>													
 					<div class="Vlt-card__footer">
-				      <form action="implicit/hello">    
+				      <form action="https://a699a865.ngrok.io/test" method="post"> 
+				      	<input id="app_link_email" type="hidden" name="email_addr" value="">   
 				        <div class="Vlt-form__element Vlt-form__element--big">            
 				          <button id="app_link" class="Vlt-btn Vlt-btn--primary Vlt-btn--app" type="Submit">Start Demo</button>
 				        </div>
@@ -188,6 +189,7 @@
         	document.getElementById('auth_form').action = "/";
         	console.log("I found tokens in URL | Setting auth_button to Sign-out");
 		    document.getElementById("auth_button").innerHTML = "Sign-Out";
+		    document.getElementById("app_link_email").value = email;
 
 		  }
 

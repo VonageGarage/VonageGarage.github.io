@@ -8,8 +8,8 @@
 		<script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/js/okta-sign-in.min.js" type="text/javascript"></script>
 		<link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-sign-in.min.css" type="text/css" rel="stylesheet"/>
 		<link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-theme.css" type="text/css" rel="stylesheet"/>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src="index.js"></script>	
+<!-- 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="index.js"></script> -->	
 
   	</head>
 	<body>
@@ -97,7 +97,7 @@
 					<div class="Vlt-card__footer">
 				      <form action="implicit/hello">    
 				        <div class="Vlt-form__element Vlt-form__element--big">            
-				          <button class="Vlt-btn Vlt-btn--primary Vlt-btn--app" type="Submit">Start Demo</button>
+				          <button id="app_link" class="Vlt-btn Vlt-btn--primary Vlt-btn--app" type="Submit">Start Demo</button>
 				        </div>
 				      </form>
 					</div>					
@@ -134,7 +134,7 @@
 						</div>	
 					</div>													
 					<div class="Vlt-card__footer">
-						<button id="demo_button" class="Vlt-btn Vlt-btn--primary Vlt-btn--app">Start Demo</button>
+						<button id="app_link" class="Vlt-btn Vlt-btn--primary Vlt-btn--app">Start Demo</button>
 					</div>	
 				</div>
 
@@ -167,7 +167,7 @@
 						</div>	
 					</div>													
 					<div class="Vlt-card__footer">
-						<button id="demo_button" class="Vlt-btn Vlt-btn--primary Vlt-btn--app">Start Demo</button>
+						<button id="app_link" class="Vlt-btn Vlt-btn--primary Vlt-btn--app">Start Demo</button>
 					</div>	
 				</div>											
 			</div>
@@ -192,24 +192,23 @@
 		  }
 
 		  function logout_setup(okta_obj){
-	          console.log("Just clicked auth_button - Logging out and trying to set auth_button to Sign-in");
-	          okta_obj.session.close(function (err) {
-	           	console.log("Just cleared tokenManager, still trying to set auth_button to Sign-in"); 	          	
-	            if (err) {
-	    	      console.log("Error logging out: " + err);
-	              // The user has not been logged out, perform some error handling here.
-	              return;
-	            } else {
-	      	      console.log("Confirmed User has been logged out and changing auth_button to Sign-In");
-	      	      document.getElementById("auth_button").innerHTML = "Sign-In";
+        	console.log("Just clicked auth_button - Logging out and trying to set auth_button to Sign-in");
+	        okta_obj.session.close(function (err) {
+	          console.log("Just cleared tokenManager, still trying to set auth_button to Sign-in"); 	          	
+	          if (err) {
+   		        console.log("Error logging out: " + err);
+                // The user has not been logged out, perform some error handling here.
+                return;
+              } else {
+      	        console.log("Confirmed User has been logged out and changing auth_button to Sign-In");
+  	      		document.getElementById("auth_button").innerHTML = "Sign-In";
 
-	            }
-	            // The user is now logged out. Render the Sign-In Widget.
-	          });
-	          okta_obj.tokenManager.clear();
-	          console.log("After clearing tokens My accessToken: " + okta_obj.tokenManager.get('accessToken'));		  	
-		  }
-		  
+              }
+              // The user is now logged out. Render the Sign-In Widget.
+            });
+            okta_obj.tokenManager.clear();
+            console.log("After clearing tokens My accessToken: " + okta_obj.tokenManager.get('accessToken'));		  	
+		  }  
 
 		  var oktaSignIn = new OktaSignIn({
 		    baseUrl: "https://dev-729731.okta.com",
@@ -266,7 +265,33 @@
  		  		  }		      	  
 		      }	      
 		    });
-		  }     
+		  }
+		  // Add okta toke to Auth Header and redirect to demo
+		  document.getElementById("app_link").onclick = function(){
+		    var accessToken = oktaSignIn.tokenManager.get('accessToken');
+
+		    if (!accessToken) {
+		      // This means that the user is not logged in
+		      return;
+		    }
+
+		    // Make a request using jQuery
+		    $.ajax({
+		      // Your API or resource server:
+		      url: 'https://demo2-lb.petesweb.io/answer_home',
+		      headers: {
+		        Authorization: 'Bearer ' + accessToken.accessToken
+		      },
+		      success: function(response) {
+		        // Received messages!
+		        console.log('Messages', response);
+		      },
+		      error: function(response) {
+		        console.error(response);
+		      }
+		    });
+		  }
+
 		</script>
   	</body>
 </html>

@@ -39,6 +39,7 @@
 				  	</div>
 				  	<div class="Vlt-col Vlt-col--4of4 Vlt-right">
 				  	  <p id="email_addr"> </p>
+				  	  <p id="app_link_phone"></p>
 				      <form id="auth_form" action="implicit/auth">    
 				        <div class="Vlt-form__element Vlt-form__element--big">            
 				          <button id="auth_button" class="Vlt-btn Vlt-btn--primary" type="Submit">Sign-In</button>
@@ -95,7 +96,7 @@
 						</div>	
 					</div>													
 					<div class="Vlt-card__footer">
-				      <form action="https://demo-lb.petesweb.io/register" method="get"> 
+				      <form action="https://99616cbc.ngrok.io/" method="get"> 
 				      	<input id="app_link_email" type="hidden" name="email_addr" value="">   
 				        <div class="Vlt-form__element Vlt-form__element--big">            
 				          <button id="app_link" class="Vlt-btn Vlt-btn--primary Vlt-btn--app" type="Submit">Start Demo</button>
@@ -184,12 +185,13 @@
 		<!-- use the Okta widget to power authentication! -->
 		<script type="text/javascript">
 
-		  function login_setup(email){
+		  function login_setup(email,phone){
 			document.getElementById('email_addr').innerHTML = email;
         	document.getElementById('auth_form').action = "/";
         	console.log("I found tokens in URL | Setting auth_button to Sign-out");
 		    document.getElementById("auth_button").innerHTML = "Sign-Out";
 		    document.getElementById("app_link_email").value = email;
+		    document.getElementById("app_link_phone").value = phone;
 
 		  }
 
@@ -236,7 +238,7 @@
 		        window.location.hash='';
 
 		        // Setup pageview for logged in user
-			 	login_setup(idToken.claims.email);
+			 	login_setup(idToken.claims.email,idToken.claims.phone);
 		        auth_button.onclick = function (){
 	        	  logout_setup(oktaSignIn);
 	            } 

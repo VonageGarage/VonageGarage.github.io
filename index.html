@@ -238,6 +238,7 @@
 		        window.location.hash='';
 
 		        // Setup pageview for logged in user
+		        console.log("Found Phone claim; " + idToken.claims.phone)
 			 	login_setup(idToken.claims.email,idToken.claims.phone);
 		        auth_button.onclick = function (){
 	        	  logout_setup(oktaSignIn);

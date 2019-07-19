@@ -253,8 +253,9 @@
 		    oktaSignIn.session.get(function (res) {
 		      // If we get here, the user is already signed in.
 		      if (res.status === 'ACTIVE') {
-
-			    login_setup(oktaSignIn.tokenManager.get('idToken').claims.email,oktaSignIn.tokenManager.get('idToken').claims.phone)
+		      	var phone = oktaSignIn.tokenManager.get('idToken').claims.phone
+		      	console.log("Found Phone Number: " + phone)
+			    login_setup(oktaSignIn.tokenManager.get('idToken').claims.email,phone)
 		        auth_button.onclick = function (){
 	        	  logout_setup(oktaSignIn);	          
 	            }    	        	

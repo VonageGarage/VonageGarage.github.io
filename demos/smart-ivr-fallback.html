@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article">
+    <head>
+      <!-- Volta CSS Stuff -->
+      <link rel="icon" type="image/ico" href="https://d2gl3otkt8l7qr.cloudfront.net/favicon.png">
+    <link rel="stylesheet" href="https://d2gl3otkt8l7qr.cloudfront.net/assets/1.2/dist/css/volta.css">
+    <!-- Okta widget stuff -->
+    <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-auth-js/2.0.1/okta-auth-js.min.js"></script>
+    </head>
+  <body>
+    <div class="Vlt-margin--top3 Vlt-margin--M-top2 Vlt-margin--S-top1">
+      <div class="Vlt-col">
+        <header class="Vlt-header">
+          <div class="Vlt-grid">
+            <div class="Vlt-col">
+              <div class="Vlt-grid">
+                <div class="Vlt-col Vlt-col--1of2">
+                  <div class="Vlt-header__logo">
+                    <a href="https://fabianp5060.github.io/" >
+                      <img src="https://www.vonage.com/assets/images/logo-vonage.svg#volta">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="Vlt-col Vlt-col--1of4">
+            </div>
+            <div class="Vlt-col Vlt-col--4of4 Vlt-right">
+              <div id="auth_email_address" class="Vlt-badge Vlt-bg-orange">Not Logged In</div>
+            </div>        
+          </div>
+      </header>
+      </div>
+      <p></p>
+      <p></p>
+    <div class="Vlt-grid">
+      <div class="Vlt-col">
+      </div>
+      <div class="Vlt-col">
+      </div>
+      <div class="Vlt-col">
+      </div>
+      <div class="Vlt-col">
+      </div>
+      <div class="Vlt-grid__separator"><!-- Empty line breaker --></div>
+      <div class="Vlt-col">       
+      </div>
+      <div class="Vlt-col Vlt-col--3of4">
+        <h3>Dial <a href="tel:+17322316409">(732) 231-6409</a> to Start the Demo</h3>
+		  <ul class="Vlt-list Vlt-list--big-number">
+        	<li>The incoming call rings the configured extension</li>
+        	<li>A timeout shorter than the voicemail timeout is set on the call so that it does not send the caller to voicemail</li>
+        	<li>When that timeout is reached Smart Numbers connects the call via SIP to a smart attendant</li>
+        </ul>
+      </div>
+      <div class="Vlt-col">       
+      </div>        
+    </div>
+    </div>
+ <!--      <script>
+      function loadInfo(email){
+        document.getElementById('auth_email_address').innerHTML = email;
+      }
+
+        // Bootstrap the AuthJS Client
+        console.log("My redirect: " + "<%= $okta_redirect %>")
+        var authClient = new OktaAuth({
+          url: 'https://dev-729731.okta.com',
+          clientId: '0oawl0b18azKfOpTG356',
+          redirectUri: "<%= $okta_redirect %>"
+        });
+        // Attempt to retrieve ID Token from Token Manager
+        var idToken = authClient.tokenManager.get('idToken')
+        .then(idToken => {
+          // If ID Token exists, output it to the console
+          if (idToken) {  
+            var email = idToken.claims.email;
+            // var phone = idToken.claims.phone;
+            loadInfo(email);          
+            console.log(`hi ${idToken.claims.email}!`);
+          // If ID Token isn't found, try to parse it from the current URL
+          }
+          else if (location.hash) {
+            authClient.token.parseFromUrl()
+            .then(idToken => {
+              console.log(`hi ${idToken.claims.email}!`);
+              var email = idToken.claims.email;
+              loadInfo(email);
+              // Store parsed token in Token Manager
+              authClient.tokenManager.add('idToken', idToken);
+              console.log(idToken);
+            });
+          }
+          else {
+            // You're not logged in, you need a sessionToken
+            authClient.token.getWithRedirect({
+              responseType: 'id_token'
+            });
+          }
+        });
+      </script>    -->
+    <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/assets-petesweb.io/assets/1.2/js/svgxuse.min.js"></script>
+    <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/assets-petesweb.io/assets/1.2/dist/js/volta.min.js"/> 
+    <script type="text/javascript">
+      Volta.init();
+    </script> 
+    </body>
+</html>

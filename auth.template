@@ -1,0 +1,46 @@
+<!-- Add to HEAD of HTML -->
+<script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-auth-js/2.0.1/okta-auth-js.min.js"></script>
+<!--  -->
+
+      <script>
+      function loadInfo(email){
+        document.getElementById('auth_email_address').innerHTML = email;
+      }
+
+        // Bootstrap the AuthJS Client
+        console.log("My redirect: " + "<%= $okta_redirect %>")
+        var authClient = new OktaAuth({
+          url: 'https://dev-729731.okta.com',
+          clientId: '0oawl0b18azKfOpTG356',
+          redirectUri: "<%= $okta_redirect %>"
+        });
+        // Attempt to retrieve ID Token from Token Manager
+        var idToken = authClient.tokenManager.get('idToken')
+        .then(idToken => {
+          // If ID Token exists, output it to the console
+          if (idToken) {  
+            var email = idToken.claims.email;
+            // var phone = idToken.claims.phone;
+            loadInfo(email);          
+            console.log(`hi ${idToken.claims.email}!`);
+          // If ID Token isn't found, try to parse it from the current URL
+          }
+          else if (location.hash) {
+            authClient.token.parseFromUrl()
+            .then(idToken => {
+              console.log(`hi ${idToken.claims.email}!`);
+              var email = idToken.claims.email;
+              loadInfo(email);
+              // Store parsed token in Token Manager
+              authClient.tokenManager.add('idToken', idToken);
+              console.log(idToken);
+            });
+          }
+          else {
+            // You're not logged in, you need a sessionToken
+            authClient.token.getWithRedirect({
+              responseType: 'id_token'
+            });
+          }
+        });
+      </script>   
